@@ -9,7 +9,7 @@ import {
   Body,
   Patch,
 } from '@nestjs/common';
-import { getCustomRepository } from 'typeorm';
+//import { getCustomRepository } from 'typeorm';
 import { User } from './user.entity';
 
 @Controller('users')
@@ -25,19 +25,20 @@ export class UserController {
   @Get()
   async getUsers(): Promise<UserDto[]> {
     const users = await this._userService.getAll();
+    console.log(users);
     return users;
   }
 
-  @Post()
+  @Post('create')
   async createUser(@Body() user: User): Promise<UserDto> {
-    const createUser = await this.createUser(user);
+    const createUser = await this._userService.create(user);
     return createUser;
   }
 
   @Patch(':id')
-  async updateUser(id: number, @Body() user: User): Promise<UserDto> {
-    const createUser = await this.createUser(user);
-    return createUser;
+  async updateUser(id: number, @Body() user: User) {
+    const updatedUser = await this._userService.update(id, user);
+    return `${updatedUser}`;
   }
 
   @Delete(':id')

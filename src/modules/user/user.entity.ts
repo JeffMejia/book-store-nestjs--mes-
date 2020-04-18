@@ -7,10 +7,12 @@ import {
   OneToOne,
   ManyToMany,
   JoinColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { Role } from '../role/role.entity';
 
-@Entity('user')
+@Entity('users')
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
   id: number;
@@ -24,10 +26,10 @@ export class User extends BaseEntity {
   @Column({ type: 'varchar', nullable: false })
   password: string;
 
-  @Column({ type: 'timestamp', name: 'created_at' })
+  @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
   createdAt: Date;
 
-  @Column({ type: 'timestamp', name: 'updated_at' })
+  @UpdateDateColumn({ type: 'timestamp', name: 'updated_at' })
   updatedAt: Date;
 
   @Column({ type: 'varchar', default: 'ACTIVE', length: 8 })
