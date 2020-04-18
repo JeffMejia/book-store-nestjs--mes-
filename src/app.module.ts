@@ -1,5 +1,4 @@
-import { UserService } from './modules/user/user.service';
-import { UserController } from './modules/user/user.controller';
+import { RoleModule } from './modules/role/role.module';
 import { ConfigService } from './config/config.service';
 import { Module, Controller } from '@nestjs/common';
 import { AppController } from './app.controller';
@@ -10,7 +9,7 @@ import { DatabaseModule } from './database/database.module';
 import { UserModule } from './modules/user/user.module';
 
 @Module({
-  imports: [ConfigModule, DatabaseModule, UserModule],
+  imports: [ConfigModule, DatabaseModule, UserModule, RoleModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -2,4 +2,6 @@ export enum RoleType {
   ADMIN = 'ADMIN',
   AUTHOR = 'AUTHOR',
   GENERAL = 'GENERAL',
+  STATUSON = 'ACTIVE',
+  STATUSOFF = 'INACTIVE',
 }
