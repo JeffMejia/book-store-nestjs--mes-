@@ -1,4 +1,3 @@
-import { UserDto } from './dto/user.dto';
 import { UserService } from './user.service';
 import {
   Controller,
@@ -17,20 +16,20 @@ export class UserController {
   constructor(private readonly _userService: UserService) {}
 
   @Get(':id')
-  async getUser(@Param() id: number): Promise<UserDto> {
+  async getUser(@Param() id: number): Promise<User> {
     const user = await this._userService.get(id); //la asignacion aca deberia ser user: User = await blabla bla;
     return user;
   }
 
   @Get()
-  async getUsers(): Promise<UserDto[]> {
+  async getUsers(): Promise<User[]> {
     const users = await this._userService.getAll();
     console.log(users);
     return users;
   }
 
   @Post('create')
-  async createUser(@Body() user: User): Promise<UserDto> {
+  async createUser(@Body() user: User): Promise<User> {
     const createUser = await this._userService.create(user);
     return createUser;
   }
