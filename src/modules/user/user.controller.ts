@@ -1,3 +1,4 @@
+import { RoleGuard } from './../role/guards/role.guard';
 import { UserService } from './user.service';
 import {
   Controller,
@@ -7,21 +8,26 @@ import {
   Delete,
   Body,
   Patch,
+  UseGuards,
 } from '@nestjs/common';
 //import { getCustomRepository } from 'typeorm';
 import { User } from './user.entity';
+import { AuthGuard } from '@nestjs/passport';
+import { Roles } from '../role/decorators/role.decoratos';
 
 @Controller('users')
 export class UserController {
   constructor(private readonly _userService: UserService) {}
 
   @Get(':id')
+  @Roles('ADMINISTRATOR', 'General', 'AUTHOR')
+  @UseGuards(AuthGuard(), RoleGuard)
   async getUser(@Param() id: number): Promise<User> {
     const user = await this._userService.get(id); //la asignacion aca deberia ser user: User = await blabla bla;
     return user;
   }
-
   @Get()
+  @UseGuards(AuthGuard())
   async getUsers(): Promise<User[]> {
     const users = await this._userService.getAll();
     console.log(users);

@@ -26,7 +26,7 @@ export class Role extends BaseEntity {
     user => user.roles,
   )
   @JoinColumn()
-  user: User[];
+  users: User[];
 
   @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
   createdAt: Date;
