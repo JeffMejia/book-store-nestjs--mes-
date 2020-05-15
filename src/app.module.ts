@@ -1,5 +1,5 @@
-import { UserService } from './modules/user/user.service';
-import { UserController } from './modules/user/user.controller';
+import { RoleController } from './modules/role/role.controller';
+import { RoleModule } from './modules/role/role.module';
 import { ConfigService } from './config/config.service';
 import { Module, Controller } from '@nestjs/common';
 import { AppController } from './app.controller';
@@ -8,9 +8,10 @@ import { ConfigModule } from './config/config.module';
 import { Configuration } from './config/config.keys';
 import { DatabaseModule } from './database/database.module';
 import { UserModule } from './modules/user/user.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
-  imports: [ConfigModule, DatabaseModule, UserModule],
+  imports: [ConfigModule, DatabaseModule, UserModule, RoleModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
